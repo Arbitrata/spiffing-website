@@ -2,20 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-.scrollbar-hide::-webkit-scrollbar {
+
+:root {
+    font-family: "Lexend", sans-serif;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
     width: 0;
     background: transparent;
-}
-
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
+  }
+  
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  ::-webkit-scrollbar-track {
     background: white/10;
-}
-
-::-webkit-scrollbar-thumb {
+  }
+  
+  ::-webkit-scrollbar-thumb {
     background: darkgray;
     border-radius: 50px;
-}
+  }

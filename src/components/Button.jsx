@@ -1,5 +1,5 @@
-import React from "react";
-import { MdNavigateNext } from "react-icons/md";
+/* eslint-disable react/prop-types */
+import { FaArrowRight } from "react-icons/fa";
 
 export default function Button({
   onClick,
@@ -8,8 +8,7 @@ export default function Button({
   onSubmit,
   buttonText,
   iconPresent,
-  iconStyle,
-  disabled=false
+  disabled = false,
 }) {
   return (
     <button
@@ -17,20 +16,14 @@ export default function Button({
       onSubmit={onSubmit}
       type={type}
       disabled={disabled}
-      className={`h-[50px] w-fit text-[15px] py-[13px] flex items-center rounded-[2px] ${
-        buttonStyle ? buttonStyle : ""
+      className={`h-[50px] w-fit px-[24px] flex items-center ${
+        buttonStyle ? buttonStyle : "text-[18px] text-white"
       } `}
     >
-      <span className="font-lato">{buttonText}</span>
-      {iconPresent && (
-        <div
-          className={`w-[50px] h-[50px] grid place-content-center text-[14px] font-lato font-extrabold ${
-            iconStyle ? iconStyle : ""
-          }`}
-        >
-          <MdNavigateNext size={20} />
-        </div>
-      )}
+      <div className="w-fit h-fit flex items-center space-x-4 font-semibold">
+        <span>{buttonText}</span>
+        <span>{iconPresent && <FaArrowRight size={20} />}</span>
+      </div>
     </button>
   );
 }

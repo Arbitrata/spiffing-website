@@ -1,87 +1,272 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiMenu, BiX } from "react-icons/bi";
-import { NavLink } from "react-router-dom";
-import Button from "./Button";
-import Logo from "../assets/Themis_logo.png";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { logo } from "../assets";
+import PropTypes from "prop-types";
 import { ScrollToBehavior } from "../helper";
 
-const Navbar = ({}) => {
-  const navlinks = [
+const NavDropDownItem = ({ to, children }) => {
+  return (
+    <>
+      <Link to={to} className="hover:text-rotorbrown">
+        {children}
+      </Link>
+    </>
+  );
+};
+
+NavDropDownItem.propTypes = {
+  icon: PropTypes.element,
+  title: PropTypes.string,
+  // children: PropTypes.string,
+  url: PropTypes.string,
+  // onClick: PropTypes.func,
+  // to: PropTypes.string,
+};
+
+const NavDropDown = ({ data, style, showNav }) => {
+  return (
+    <div
+      className={` bg-none ${
+        showNav ? "flex" : "hidden"
+      } lg:hidden lg:group-hover:flex flex-col gap-2 font-medium lg:text-[14px] hover:text-white absolute cursor-pointer mt-[95px]`}
+    >
+      <div
+        className={`bg-sniffBg lg:group-flex lg:bg-white flex flex-wrap justify-start gap-4 bg-tranparent  lg:shadow-sm text-darkGreen lg:shadow-sniffGreen border-t-[2px] border-sniffGreen ${
+          !style ? "lg:w-[300px]" : style
+        } rounded-[10px]`}
+      >
+        <ul className=" mx-auto lg:group-flex w-full flex flex-wrap justify-start gap-6 px-[15px] py-[15px] pb-[20px]">
+          {data.map(({ to, label }) => (
+            <li onClick={to} className="flex gap-4 w-full" key={Math.random(100)}>
+              <NavDropDownItem to={to}>{label}</NavDropDownItem>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+NavDropDown.propTypes = {
+  style: PropTypes.string,
+  data: PropTypes.array,
+  showNav: PropTypes.bool,
+  onClick: PropTypes.func,
+};
+
+const Navbar = () => {
+  const [open, setOpen] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const leftNavlinks = [
     {
-      to: "/",
-      label: "Software",
+      to: "about-us",
+      label: "About us",
     },
     {
-      to: "courses",
-      label: "Courses",
-    },
-    {
-      to: "data-management",
-      label: "Data management",
-    },
-    {
-      to: "law-practices",
-      label: "Law practices",
-    },
-    {
-      to: "Electronics&drone-technology",
-      label: "Electronics & Drone Tech",
+      to: "photo-gallery",
+      label: "Photo Gallery",
     },
   ];
 
-  const [open, setOpen] = useState(false);
+  const dropDownLinks = [
+    {
+      to: "our-services",
+      link: "Our Services",
+      sections: [
+        {
+          to: () => {
+            if (location.pathname !== "/our-services") {
+              navigate("/our-services", {
+                state: { id: "helicoptercharter" },
+              });
+            } else {
+              ScrollToBehavior("helicoptercharter");
+            }
+          },
+          label: "Event Management",
+        },
+        {
+          to: () => {
+            if (location.pathname !== "/our-services") {
+              navigate("/our-services", {
+                state: { id: "helicoptercharter" },
+              });
+            } else {
+              ScrollToBehavior("helicoptercharter");
+            }
+          },
+          label: "Event Supplies",
+        },
+        {
+          to: () => {
+            if (location.pathname !== "/our-services") {
+              navigate("/our-services", {
+                state: { id: "helicoptercharter" },
+              });
+            } else {
+              ScrollToBehavior("helicoptercharter");
+            }
+          },
+          label: "Experiential",
+        },
+        {
+          to: () => {
+            if (location.pathname !== "/our-services") {
+              navigate("/our-services", {
+                state: { id: "helicoptercharter" },
+              });
+            } else {
+              ScrollToBehavior("helicoptercharter");
+            }
+          },
+          label: "Marketing",
+        },
+      ],
+    },
+  ];
 
-  const renderButton = () => {
-    return (
-      <Button
-        onClick={() => ScrollToBehavior("contact")}
-        buttonText={"Contact us"}
-        buttonStyle={"text-white bg-darkgray px-[50px]"}
-      />
-    );
-  };
+  const activeLink = "text-[16px] text-darkGreen font-bold cursor-pointer";
 
-  const activeLink =
-    "text-[15px] text-textblue font-extrabold font-lato cursor-pointer";
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 25) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    };
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setOpen(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
 
-  const inactiveLink =
-    "text-[15px] text-textgray font-medium font-lato cursor-pointer";
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const isLargeScreenAndOpen = window.innerWidth >= 1024 && open;
+  const isLargeScreen = window.innerWidth >= 1024;
 
   return (
-    <nav className="h-[100px] lg:px-[70px] md:px-[30px] px-[20px] fixed bg-white w-full z-50 shadow">
-      <div className="items-center flex justify-between w-full h-full max-w-screen-2xl mx-auto">
-        <div className="w-full h-full basis-1/5 grid place-content-center">
-          <img src={Logo} className="lg:w-[150px] w-auto" />
+    <nav
+      className={`h-[100px] lg:px-[60px] md:px-[20px] px-[10px] fixed w-full z-50 shadow ${
+        !scrolling
+          ? open
+            ? "bg-white text-darkGreen"
+            : "bg-transparent text-darkGreen"
+          : "bg-darkGreen bg-opacity-80 lg:text-white text-darkGreen"
+      }`}
+    >
+      <div className="items-center flex lg:justify-start justify-between w-full h-full max-w-screen-2xl mx-auto">
+        <div className="lg:hidden w-fit items-center">
+          <Link to="/">
+            <img
+              src={logo}
+              className={`h-[60px] w-auto flex lg:hidden `}
+              alt="Logo"
+            />
+          </Link>
+        </div>
+        <div className="basis-1/6 lg:flex hidden items-center">
+          <Link to={""}>
+            <img
+              src={logo}
+              className={`h-[80px] w-auto lg:flex hidden `}
+              alt="Logo"
+            />
+          </Link>
         </div>
         <ul
-          onClick={() => setOpen(!open)}
-          className={`lg:flex lg:w-full lg:h-full w-[60%] h-screen lg:space-x-5 lg:bg-white bg-beigeligter transition-all duration-200 lg:static absolute left-0 lg:justify-around lg:px-[80px] px-6 items-center ${
+          className={`lg:flex lg:space-x-8 lg:flex-grow lg:items-center mt-[100px] lg:mt-0 transition-all duration-300 lg:static fixed top-0 left-0 lg:justify-center lg:px-0 px-6 h-screen lg:h-full ${
             open
-              ? "top-[100px] lg:py-0 py-10 lg:space-y-0 space-y-8"
-              : "left-[-100%] bg-opacity-100 top-[100px]"
-          }`}
+              ? `top-[0px] lg:py-0 py-10 lg:space-y-0 space-y-8 bg-white border-r w-[50%] ${
+                  !isLargeScreenAndOpen ? `bg-white` : "bg-white"
+                }`
+              : "left-[-100%] bg-opacity-100 top-[0px] lg:py-0 py-10 lg:space-y-0 space-y-8"
+          } ${"top-[0px]"}`}
         >
-          {navlinks.map((link) => (
-            <li key={link.to} className="text-left uppercase">
+          {leftNavlinks.map((link) => (
+            <li
+              key={link.to}
+              onClick={!isLargeScreen ? () => setOpen(!open) : null}
+              className="text-left capitalize"
+            >
               <NavLink
                 to={link.to}
                 onClick={() => setOpen(false)}
                 className={({ isActive }) =>
-                  isActive
-                    ? activeLink
-                    : "text-[15px] text-textgray font-medium font-lato cursor-pointer"
+                isActive
+                  ? activeLink
+                  : scrolling
+                  ? "flex text-[16px] lg:text-sniffGreen font-bold cursor-pointer"
+                  : "lg:text-sniffGreen text-[16px] font-bold cursor-pointer"
                 }
               >
                 {link.label}
               </NavLink>
             </li>
           ))}
-          {open && <div className="lg:hidden py-[20px]">{renderButton()}</div>}
+          {dropDownLinks.map((dropdown) => (
+            <li
+              key={dropdown.link}
+              className="group flex flex-col cursor-pointer lg:h-full w-full lg:w-fit relative"
+            >
+              <NavLink
+                to={dropdown.to}
+                onClick={() => setOpen(false)}
+                className={({ isActive }) => `
+                    flex items-center justify-between font-bold lg:justify-normal h-full w-full lg:w-fit ${
+                      isActive
+                        ? activeLink
+                        : scrolling
+                        ? "flex text-[16px] lg:text-sniffGreen cursor-pointer"
+                        : "lg:text-sniffGreen text-[16px]"
+                    }
+                      `}
+              >
+                {dropdown.link}
+                <svg
+                  className="hidden lg:block w-4 h-4 ml-2"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M19 9l-7 7-7-7" />
+                </svg>
+              </NavLink>
+              <NavDropDown
+                data={dropdown.sections}
+                showNav={false}
+                // onClick={NavLinkClicked}
+              />
+            </li>
+          ))}
+          <li>
+            <NavLink
+              to={"contact-us"}
+              onClick={() => ScrollToBehavior("contact")}
+              className={` text-[16px] ${
+                scrolling
+                  ? `${open ? "text-black" : "text-sniffGreen"}`
+                  : `${!open ? "text-sniffGreen" : "text-black"}`
+              } font-bold cursor-pointer `}
+            >
+              {`Contact us`}
+            </NavLink>
+          </li>
         </ul>
-
-        <div className="basis-1/4 w-full h-full grid place-content-center lg:visible invisible">
-          {renderButton()}
-        </div>
         <button
           onClick={() => setOpen(!open)}
           className="lg:hidden visible md:pl-0 pl-4 text-darkgray"

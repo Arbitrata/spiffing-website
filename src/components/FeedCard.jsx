@@ -1,10 +1,8 @@
-import React from "react";
-
-export default function FeedCard({ image, name, title }) {
+// eslint-disable-next-line react/prop-types
+export default function FeedCard({ image, name, key }) {
   return (
-    <div className="w-[360px] h-[205px] shadow p-[20px] font-lato relative mr-5 cursor-pointer my-2">
-      <img className="w-full h-full object-contain" src={image} alt={name} />
-      <p className="text-[13px] text-textgray line-clamp-1">{title}</p>
+    <div key={key} className="w-auto h-[60px] p-2 relative">
+      <img className="w-full h-full object-cover" src={image} alt={name} />
     </div>
   );
 }

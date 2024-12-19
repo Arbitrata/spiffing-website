@@ -6,11 +6,10 @@ import {
   EntryRoot,
   ErrorPage,
   LandingPage,
-  CoursesPage,
-  LawPractices,
-  DataManagement,
-  ElectronicsDroneTech,
-  Catalog,
+  AboutUsPage,
+  PhotoGallery,
+  OurServicesPage,
+  ContactUsPage,
 } from "./pages";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -27,24 +26,20 @@ const router = createBrowserRouter([
         element: <LandingPage />,
       },
       {
-        path: "courses",
-        element: <CoursesPage />,
+        path: "about-us",
+        element: <AboutUsPage />,
       },
       {
-        path: "law-practices",
-        element: <LawPractices />,
+        path: "our-services",
+        element: <OurServicesPage />,
       },
       {
-        path: "data-management",
-        element: <DataManagement />,
+        path: "photo-gallery",
+        element: <PhotoGallery />,
       },
       {
-        path: "Electronics&drone-technology",
-        element: <ElectronicsDroneTech />,
-      },
-      {
-        path: "catalog",
-        element: <Catalog />,
+        path: "contact-us",
+        element: <ContactUsPage />,
       },
     ],
   },
