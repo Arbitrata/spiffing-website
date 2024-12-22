@@ -68,12 +68,12 @@ function EntryRoot() {
         </div>
       </div>
       {showButton && (
-        <div className="w-fit h-fit bottom-1 z-30 fixed md:block hidden right-1">
+        <div className="w-fit h-fit bottom-8 z-30 fixed md:block hidden right-4">
           <button
-            className="p-2 rounded-full bg-rotorbrown text-rotorwhite"
+            className="p-2 rounded-full bg-darkGreen text-white"
             onClick={scrollToTop}
           >
-            <BiArrowToTop />
+            <BiArrowToTop size={24} />
           </button>
         </div>
       )}

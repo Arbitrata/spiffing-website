@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import CountUp from "react-countup";
 
 export default function Counter({ start, end, label }) {
@@ -31,14 +31,14 @@ export default function Counter({ start, end, label }) {
         <>
           <div>
             <CountUp
-              className="text-rotorwhite text-[33px] font-bold"
+              className="text-rotorwhite text-[25px] font-bold"
               start={start}
               end={end}
               duration={2.75}
               prefix="+"
             />
           </div>
-          <h1 className="text-[18px] font-semibold text-rotorwhite mt-2">
+          <h1 className="text-[14px] font-semibold text-rotorwhite mt-2">
             {label}
           </h1>
         </>

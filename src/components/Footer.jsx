@@ -1,10 +1,9 @@
-import { hero1, logo } from "../assets";
-import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { about1, hero1, hero2, hero3, logo } from "../assets";
 import { FaPhone } from "react-icons/fa6";
 import { BiSolidEnvelope, BiWorld } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 function Footer() {
-
   const contactInfo = [
     {
       icon: <BiWorld size={20} />,
@@ -31,7 +30,7 @@ function Footer() {
           <div className="grid grid-cols-1 gap-8 px-4 pb-6 lg:grid-cols-[2fr_2fr_3fr] md:grid-cols-2 h-fit">
             <div>
               <img src={logo} alt="themis logo" className="w-fit" />
-              <p className="text-textGray text-[14px] font-medium mt-4">
+              <p className="text-darkGreen text-[16px] font-light md:text-left text-center px-8 mt-12">
                 A gathering place for event professionals, creators, and
                 visionaries to inspire and shape unforgettable moments.
               </p>
@@ -55,13 +54,38 @@ function Footer() {
             </div>
             <div className="p-4 overflow-hidden lg:col-span-1 md:col-span-2">
               <h2 className="uppercase text-[20px] text-darkGreen font-extrabold mb-[20px]">
-                Our Location
+                Recent Event
               </h2>
-              <img
-                src={hero1}
-                alt="Rotorjet Aviation"
-                className="w-full h-[300px]"
-              />
+              <div className="w-full h-fit flex-grow grid grid-cols-3 gap-1 justify-between">
+                <img
+                  src={hero2}
+                  alt="Rotorjet Aviation"
+                  className="w-full object-cover h-[150px] flex-grow"
+                />
+                <img
+                  src={hero1}
+                  alt="Rotorjet Aviation"
+                  className="w-full object-cover h-[150px] flex-grow"
+                />
+                <img
+                  src={about1}
+                  alt="Rotorjet Aviation"
+                  className="w-full object-cover h-[150px] flex-grow"
+                />
+                <img
+                  src={hero1}
+                  alt="Rotorjet Aviation"
+                  className="w-full object-cover h-[150px] flex-grow"
+                />
+                <img
+                  src={hero3}
+                  alt="Rotorjet Aviation"
+                  className="w-full object-cover h-[150px] flex-grow"
+                />
+                <div className="w-full h-full flex flex-col bg-white text-darkGreen text-center underline rounded-md justify-center px-4">
+                  <Link to={'photo-gallery'}>See More</Link>
+                </div>
+              </div>
             </div>
           </div>
           <hr className="border border-darkGreen mt-2 mx-2 lg:mx-0" />

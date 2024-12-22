@@ -9,6 +9,7 @@ function RenderHero({
   button,
   className,
   buttonStyle,
+  alt,
 }) {
   return (
     <div
@@ -19,14 +20,14 @@ function RenderHero({
       <div className="w-full h-full absolute top-0 left-0">
         <img
           src={src}
-          alt="Sniffing events limited"
+          alt={alt}
           className="w-full h-full object-center object-cover"
         />
       </div>
-      <div className="w-full h-screen absolute bg-darkGreen bg-opacity-80 top-0 left-0 lg:px-[70px] 2xl:px- md:px-[30px] px-[20px] flex items-center">
-        <div className="max-w-screen-2xl mx-auto">
-          <div className="w-full grid place-items-center justify-center">
-            <h1 className="lg:text-[40px] md:text-[35px] text-center text-[30px] tracking-wide lg:max-w-[60%] font-bold text-sniffBg">
+      <div className="w-full h-full absolute bg-darkGreen bg-opacity-80 top-0 left-0 lg:px-[70px] md:px-[30px] px-[20px] flex items-center">
+        <div className="max-w-screen-xl mx-auto">
+          <div className="w-full flex flex-col justify-center items-center">
+            <h1 className="lg:text-[40px] md:text-[35px] text-center text-[30px] mb-2 tracking-wide lg:max-w-[60%] font-bold text-sniffBg">
               {title}
             </h1>
             <h3 className="text-white text-[18px] font-lato 2xl:text-[30px] lg:w-[70%] md:w-[90%] font-medium">

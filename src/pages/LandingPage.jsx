@@ -132,7 +132,7 @@ function LandingPage() {
           }
           onClick={() => handleNavigation("our-services")}
           buttonText={"Make Your Event Extraordinary"}
-          buttonStyle={'text-white bg-sniffGreen hover:bg-sniffGreen/80'}
+          buttonStyle={"text-white bg-sniffGreen hover:bg-sniffGreen/80"}
         />
       </AliceCarousel>
       <div className="w-full h-fit py-[80px] bg-sniffBg">
@@ -149,7 +149,6 @@ function LandingPage() {
                 Your Premier Event Partner
               </h1>
             </div>
-            {/* <hr className="border-sniffGreen border-[2px] rounded-full w-[40%] mt-6" /> */}
             <p className="text-[16px] max-w-[460px] font-light text-textGray leading-[25px]">
               {`Spiffing Events is your go-to event solutions provider. We
               specialize in creating unforgettable experiences, from corporate
@@ -214,11 +213,13 @@ function LandingPage() {
               <img src={about1} alt="" className="w-full h-full object-cover" />
             </AliceCarousel>
           </div>
-          <div className="col-span-1 lg:col-span-2 space-y-8 lg:mt-0 mt-6 flex flex-col justify-center">
-            <h1 className="text-[33px] font-bold text-darkGreen max-w-[460px] leading-[130%]">
-              Recent Memories 2024
-            </h1>
-            <hr className="border-sniffGreen border-[2px] rounded-full w-[40%] mt-6" />
+          <div className="col-span-1 lg:col-span-2 space-y-8 lg:mt-0 mt-6 flex flex-col justify-around py-8">
+            <div className="w-full flex flex-col space-y-4">
+              <h1 className="text-[33px] font-bold text-darkGreen max-w-[460px] leading-[130%]">
+                Recent Memories 2024
+              </h1>
+              <hr className="border-sniffGreen border-[2px] rounded-full w-[40%] mt-6" />
+            </div>
             <p className="text-[16px] max-w-[460px] font-light text-textGray leading-[25px]">
               Ready to make 2025 even more spectacular? Lets transform your
               vision into reality. Explore our portfolio of successful events
@@ -250,7 +251,6 @@ function LandingPage() {
           <div className="w-full h-fit flex justify-center md:px-[60px] px-2 pb-[30px]">
             <HeaderTitle
               title={"Our Partners & Clients"}
-              // descriptions={`Spiffing Events is dedicated to excellence and innovation in a rapidly evolving industry.`}
               className={"text-darkGreen"}
             />
           </div>

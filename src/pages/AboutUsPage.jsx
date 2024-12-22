@@ -1,74 +1,152 @@
-import { hero2, hero3 } from "../assets";
+import { about1, hero1, hero2, hero3 } from "../assets";
 import { HeaderTitle } from "../components/headers";
-import { HeroCard } from "../components/cards";
 import { Counter } from "../components/counter";
-import { CTA } from "./LandingPage";
+import AliceCarousel from "react-alice-carousel";
+import { RenderHero } from "../components";
+import { useRef } from "react";
+import { FaEye, FaFontAwesomeFlag, FaHeart } from "react-icons/fa";
+import { BsFillLightbulbFill } from "react-icons/bs";
 
 export default function AboutUsPage() {
+  const heroCarouselRef = useRef();
+
+  const missionVisionValues = [
+    {
+      title: "Mission",
+      icon: <FaFontAwesomeFlag size={30} />,
+      description:
+        "Our mission is to provide exceptional event hosting services, turning ideas into extraordinary moments. We deliver quality, attention to detail, and personalized solutions to craft celebrations that exceed expectations and build lasting relationships.",
+      style: "text-[#ADD6D3]",
+    },
+    {
+      title: "Vision",
+      icon: <BsFillLightbulbFill size={30} />,
+      description:
+        "To become a globally renowned leader in event hosting by creating remarkable experiences that foster meaningful connections. We aim to inspire joy and innovation, leaving a lasting impact on clients and guests.",
+      style: "text-[#FFFF00]",
+    },
+    {
+      title: "Values",
+      icon: <FaHeart size={30} />,
+      description:
+        "Creativity, quality, and innovation define our work. We focus on details, personalized solutions, and building strong client relationships to create extraordinary and memorable experiences.",
+      style: "text-sniffGreen",
+    },
+  ];
+
   return (
-    <div className="w-full h-fit overflow-hidden pt-[95px]">
-      <div className="w-full h-screen relative">
-        <img src={hero3} alt="" className="w-full h-full object-cover" />
-        <div className="w-full h-screen bg-rotorblue absolute top-0 bg-opacity-40 grid place-content-center">
-          <div className="wfit h-fit grid justify-center ">
-            <h1 className="md:text-[33px] text-[18px] text-center font-extrabold text-rotorwhite mb-6">
-              Unmatched Excellence: Safety and Satisfaction
-            </h1>
+    <div className="w-full h-fit">
+      <AliceCarousel
+        ref={heroCarouselRef}
+        duration={700}
+        startIndex={0}
+        fadeOutAnimation={true}
+        autoPlay={false}
+        disableDotsControls={true}
+        disableButtonsControls={true}
+        mouseDragEnabled={false}
+        autoPlayInterval={2000}
+        infinite={true}
+      >
+        <div>
+          <RenderHero
+            className={"h-[50vh] w-full"}
+            src={about1}
+            alt={"Spiffing Events Limited"}
+            title={"Spiffing Events Limited Your Premier Event Partner"}
+          />
+        </div>
+      </AliceCarousel>
+      <div className="w-full h-fit overflow-hidden bg-white lg:px-[70px] md:px-[30px] px-[20px] py-[60px]">
+        <div className="w-full h-fit overflow-hidden max-w-screen-xl mx-auto grid lg:grid-cols-2 grid-cols-1 gap-x-[40px]">
+          <div className="col-span-1 grid lg:grid-cols-2 grid-cols-2 grid-rows-2 bg-white gap-2">
+            <div className={` lg:h-full h-[200px] row-span-1 bg-sniffBg`}>
+              <img
+                src={hero3}
+                alt="Spiffing Events Limited"
+                className="h-full w-full object-cover object-center"
+              />
+            </div>
+            <div className={`  lg:h-full h-[200px] row-span-1 bg-sniffBg`}>
+              <img
+                src={hero1}
+                alt="Spiffing Events Limited"
+                className="h-full w-full object-cover object-center"
+              />
+            </div>
+            <div className="col-span-1  lg:h-full h-[200px] row-span-1 bg-sniffBg">
+              <img
+                src={hero1}
+                alt="Spiffing Events Limited"
+                className="h-full w-full object-cover object-center"
+              />
+            </div>
+            <div className="col-span-1  lg:h-full h-[200px] row-span-1 bg-sniffBg">
+              <img
+                src={hero1}
+                alt="Spiffing Events Limited"
+                className="h-full w-full object-cover object-center"
+              />
+            </div>
+          </div>
+          <div className="lg:space-y-10 space-y-8 col-span-1 flex flex-col justify-start h-full py-8 relative">
+            <div className="w-full flex flex-col space-y-4">
+              <p className="text-[16px] max-w-[460px] font-medium text-sniffGreen mb-4 leading-[25px]">
+                {`About Us`}
+              </p>
+              <h1 className="text-[33px] font-bold text-darkGreen max-w-[460px] leading-[130%]">
+                Your Premier Event Partner
+              </h1>
+              <hr className="border-sniffGreen border-[2px] rounded-full w-[40%] mt-6" />
+            </div>
+            <p className="text-[16px] max-w-[460px] font-light text-textGray leading-[25px]">
+              Relive the magic of 2024 with Spiffing Events. From grand galas to
+              intimate gatherings, we've crafted unforgettable experiences. Our
+              team of experts excels in event planning, design, and execution.
+              Ready to make 2025 even more spectacular? Let's transform your
+              vision into reality. Explore our portfolio of successful events
+              and discover how Spiffing Events can elevate your next occasion.
+            </p>
+            <div className=" w-full flex flex-wrap justify-between max-w-[400px]">
+              <Counter start={5000} end={7000} label={"Events"} />
+              <Counter start={5} end={15} label={"Clients"} />
+              <Counter start={100} end={250} label={"Equipments"} />
+            </div>
           </div>
         </div>
       </div>
-      <div className="w-full h-fit">
-        <div className="w-full h-fit flex justify-center py-[80px] lg:px-0 md:px-14 px-4">
-          <HeaderTitle
-            title={"Fly with us"}
-            descriptions={
-              "Whether you seek an unforgettable helicopter charter experience, an unparalleled journey with our high-quality private jet charter services, where luxury and efficiency converge at 40,000 feet, or an international top-tier maintenance services, we're here to elevate your expectations."
-            }
-          />
-        </div>
-        <div className="bg-rotorbg flex justify-center">
-          <div className="w-fit grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 h-fit lg:p-[60px] md:p-[30px] px-4 max-w-screen-2xl mx-auto">
-            <HeroCard
-              image={hero2}
-              title={"Our Team"}
-              description={
-                "With a team of experienced pilots, seasoned engineers and customer service representatives we offer unmatched dedication to providing the highest level of safety and satisfaction to our customers. We prioritize ongoing training and education to ensure a top-notch experience."
-              }
-            />
-            <HeroCard
-              image={hero3}
-              title={"Our Location"}
-              description={
-                "Based in the vibrant landscape of Kenya, nestled in the heart of Nairobi, along Langata road, opposite tamarind tree hotel into Langata road link, we are located in Wilson Airport, Apron 5, Hangar 11 and 12."
-              }
-            />
-            <HeroCard
-              image={hero2}
-              title={"Our Services"}
-              description={
-                "Discover the extraordinary with your premium partner for luxury helicopter chartering, VIP Jet Services and meticulous helicopter maintenance services."
-              }
-            />
-          </div>
-        </div>
-        <div className="w-full h-fit flex justify-center py-[80px] lg:px-0 md:px-14 px-4">
-          <HeaderTitle
-            title={"Our History"}
-            descriptions={
-              "We take pride in not only providing unparalleled services but also playing a leading role in showcasing the beauty of the African continent through our operations. We have been providing helicopter charter services for over 10 years. We started with a single helicopter and have since expanded to a fleet of 7, serving customers across the country and the world."
-            }
-          />
-        </div>
-        <div className="w-full h-fit bg-rotorblue flex justify-between">
-          <div className="w-full lg:flex justify-between md:h-[225px] h-fit md:py-0 py-10 md:space-y-0 items-center gap-8 grid md:grid-cols-4 grid-cols-2 lg:px-[100px] px-[40px] max-w-screen-2xl mx-auto">
-            <Counter start={11000} end={12000} label={"Flight hours"} />
-            <Counter start={400} end={500} label={"Destinations"} />
-            <Counter start={29000} end={30000} label={"Passengers"} />
-            <Counter start={4000} end={5000} label={"Missions"} />
+
+      <div
+        className="w-full h-fit bg-cover bg-fixed bg-center"
+        style={{ backgroundImage: `url(${hero3})` }}
+      >
+        <div className="relative h-full w-full bg-darkGreen bg-opacity-80 lg:px-[80px] md:px-[40px] px-[12px] flex flex-col pb-12 justify-center">
+          <div className="w-full h-full p-12 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 max-w-screen-xl mx-auto gap-8">
+            {missionVisionValues.map((item, index) => (
+              <div key={index} className="space-y-4">
+                <div className="w-full h-fit flex justify-center">
+                  <p
+                    className={`text-center py-4 border-b-4 rounded ${
+                      item.style ? item.style : ""
+                    }`}
+                  >
+                    {item.icon}
+                  </p>
+                </div>
+                <h1 className="text-[33px] font-bold text-white text-center">
+                  Our
+                  <em className={`${item.style ? item.style : ""}`}>
+                    {item.title}
+                  </em>
+                </h1>
+                <p className="w-full text-[14px] font-medium text-center text-white">
+                  {item.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-      <CTA />
     </div>
   );
 }
