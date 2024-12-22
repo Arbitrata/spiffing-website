@@ -1,4 +1,4 @@
-import { about1, hero1, hero2, hero3 } from "../assets";
+import { about1, about2, about3, about4, aboutBadge, aboutHero, bg2, hero1, hero2, hero3 } from "../assets";
 import { HeaderTitle } from "../components/headers";
 import { Counter } from "../components/counter";
 import AliceCarousel from "react-alice-carousel";
@@ -51,7 +51,7 @@ export default function AboutUsPage() {
         <div>
           <RenderHero
             className={"h-[50vh] w-full"}
-            src={about1}
+            src={aboutHero}
             alt={"Spiffing Events Limited"}
             title={"Spiffing Events Limited Your Premier Event Partner"}
           />
@@ -62,28 +62,28 @@ export default function AboutUsPage() {
           <div className="col-span-1 grid lg:grid-cols-2 grid-cols-2 grid-rows-2 bg-white gap-2">
             <div className={` lg:h-full h-[200px] row-span-1 bg-sniffBg`}>
               <img
-                src={hero3}
+                src={aboutBadge}
                 alt="Spiffing Events Limited"
                 className="h-full w-full object-cover object-center"
               />
             </div>
             <div className={`  lg:h-full h-[200px] row-span-1 bg-sniffBg`}>
               <img
-                src={hero1}
+                src={about2}
                 alt="Spiffing Events Limited"
                 className="h-full w-full object-cover object-center"
               />
             </div>
             <div className="col-span-1  lg:h-full h-[200px] row-span-1 bg-sniffBg">
               <img
-                src={hero1}
+                src={about3}
                 alt="Spiffing Events Limited"
                 className="h-full w-full object-cover object-center"
               />
             </div>
             <div className="col-span-1  lg:h-full h-[200px] row-span-1 bg-sniffBg">
               <img
-                src={hero1}
+                src={about4}
                 alt="Spiffing Events Limited"
                 className="h-full w-full object-cover object-center"
               />
@@ -118,7 +118,7 @@ export default function AboutUsPage() {
 
       <div
         className="w-full h-fit bg-cover bg-fixed bg-center"
-        style={{ backgroundImage: `url(${hero3})` }}
+        style={{ backgroundImage: `url(${bg2})` }}
       >
         <div className="relative h-full w-full bg-darkGreen bg-opacity-80 lg:px-[80px] md:px-[40px] px-[12px] flex flex-col pb-12 justify-center">
           <div className="w-full h-full p-12 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 max-w-screen-xl mx-auto gap-8">
