@@ -18,10 +18,7 @@ const NavDropDownItem = ({ to, children }) => {
 NavDropDownItem.propTypes = {
   icon: PropTypes.element,
   title: PropTypes.string,
-  // children: PropTypes.string,
   url: PropTypes.string,
-  // onClick: PropTypes.func,
-  // to: PropTypes.string,
 };
 
 const NavDropDown = ({ data, style, showNav }) => {
@@ -38,7 +35,11 @@ const NavDropDown = ({ data, style, showNav }) => {
       >
         <ul className=" mx-auto lg:group-flex w-full flex flex-wrap justify-start gap-6 px-[15px] py-[15px] pb-[20px]">
           {data.map(({ to, label }) => (
-            <li onClick={to} className="flex gap-4 w-full" key={Math.random(100)}>
+            <li
+              onClick={to}
+              className="flex gap-4 w-full"
+              key={Math.random(100)}
+            >
               <NavDropDownItem to={to}>{label}</NavDropDownItem>
             </li>
           ))}
@@ -81,10 +82,10 @@ const Navbar = () => {
           to: () => {
             if (location.pathname !== "/our-services") {
               navigate("/our-services", {
-                state: { id: "helicoptercharter" },
+                state: { id: "event-management" },
               });
             } else {
-              ScrollToBehavior("helicoptercharter");
+              ScrollToBehavior("event-management");
             }
           },
           label: "Event Management",
@@ -93,10 +94,10 @@ const Navbar = () => {
           to: () => {
             if (location.pathname !== "/our-services") {
               navigate("/our-services", {
-                state: { id: "helicoptercharter" },
+                state: { id: "event-supplies" },
               });
             } else {
-              ScrollToBehavior("helicoptercharter");
+              ScrollToBehavior("event-supplies");
             }
           },
           label: "Event Supplies",
@@ -105,31 +106,19 @@ const Navbar = () => {
           to: () => {
             if (location.pathname !== "/our-services") {
               navigate("/our-services", {
-                state: { id: "helicoptercharter" },
+                state: { id: "experiential-marketing" },
               });
             } else {
-              ScrollToBehavior("helicoptercharter");
+              ScrollToBehavior("experiential-marketing");
             }
           },
-          label: "Experiential",
-        },
-        {
-          to: () => {
-            if (location.pathname !== "/our-services") {
-              navigate("/our-services", {
-                state: { id: "helicoptercharter" },
-              });
-            } else {
-              ScrollToBehavior("helicoptercharter");
-            }
-          },
-          label: "Marketing",
+          label: "Experiential Marketing",
         },
       ],
     },
   ];
 
-  const activeLink = "text-[16px] text-darkGreen font-bold cursor-pointer";
+  const activeLink = "text-[16px] text-white font-bold cursor-pointer";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -204,11 +193,11 @@ const Navbar = () => {
                 to={link.to}
                 onClick={() => setOpen(false)}
                 className={({ isActive }) =>
-                isActive
-                  ? activeLink
-                  : scrolling
-                  ? "flex text-[16px] lg:text-sniffGreen font-bold cursor-pointer"
-                  : "lg:text-sniffGreen text-[16px] font-bold cursor-pointer"
+                  isActive
+                    ? activeLink
+                    : scrolling
+                    ? "flex text-[16px] lg:text-sniffGreen font-bold cursor-pointer"
+                    : "lg:text-sniffGreen text-[16px] font-bold cursor-pointer"
                 }
               >
                 {link.label}
@@ -256,12 +245,13 @@ const Navbar = () => {
           <li>
             <NavLink
               to={"contact-us"}
-              onClick={() => ScrollToBehavior("contact")}
-              className={` text-[16px] ${
-                scrolling
-                  ? `${open ? "text-black" : "text-sniffGreen"}`
-                  : `${!open ? "text-sniffGreen" : "text-black"}`
-              } font-bold cursor-pointer `}
+              className={({ isActive }) =>
+                isActive
+                  ? activeLink
+                  : scrolling
+                  ? "flex text-[16px] lg:text-sniffGreen font-bold cursor-pointer"
+                  : "lg:text-sniffGreen text-[16px] font-bold cursor-pointer"
+              }
             >
               {`Contact us`}
             </NavLink>

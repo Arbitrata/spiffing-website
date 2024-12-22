@@ -7,6 +7,7 @@ import Iconcard from "./Iconcard";
 import Input from "./Input";
 import FeedCard from "./FeedCard";
 import RenderHero from "./RenderHero";
+import ContactForm from "./ContactForm";
 
 export {
   NavBar,
@@ -18,4 +19,5 @@ export {
   Input,
   FeedCard,
   RenderHero,
+  ContactForm,
 };

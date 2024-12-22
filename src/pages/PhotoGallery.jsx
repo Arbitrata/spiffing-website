@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { hero1, hero2 } from "../assets";
+import React, { useEffect, useRef, useState } from "react";
+import { about1, hero1, hero2 } from "../assets";
 import { HeaderTitle } from "../components/headers";
+import AliceCarousel from "react-alice-carousel";
+import { RenderHero } from "../components";
 
 export default function PhotoGallery() {
+  const heroCarouselRef = useRef();
   const allImages = [
     {
       image: hero1,
@@ -97,15 +100,15 @@ export default function PhotoGallery() {
   const tabLinks = [
     {
       id: 1,
-      title: "All Photos",
+      title: "All",
     },
     {
       id: 2,
-      title: "Helicopter Charters",
+      title: "Wedding",
     },
     {
       id: 3,
-      title: "Private Jet Services",
+      title: "Birthday",
     },
     {
       id: 4,
@@ -113,11 +116,11 @@ export default function PhotoGallery() {
     },
   ];
 
-  const [selectedTab, setSelectedTab] = useState("All Photos");
+  const [selectedTab, setSelectedTab] = useState("All");
   const [filteredImages, setFilteredImages] = useState(allImages);
 
   useEffect(() => {
-    if (selectedTab === "All Photos") {
+    if (selectedTab === "All") {
       setFilteredImages(allImages);
     } else {
       const filtered = allImages.filter((item) => item.title === selectedTab);
@@ -126,34 +129,42 @@ export default function PhotoGallery() {
   }, [selectedTab]);
 
   return (
-    <div className="w-full h-fit relative top-[100px]">
-      <div className="h-[400px] relative">
-        <img
-          src={hero2}
-          alt="Rotorjet helicopter-flying-city-with-sky"
-          className="w-full h-full object-cover"
-        />
-        <div className="w-full h-full bg-rotorblue absolute top-0 bg-opacity-50 grid place-content-center text-[33px] font-bold text-rotorwhite">
-          Photo Gallery
-        </div>
-      </div>
-      <div className="w-full h-fit min-h-screen py-10 lg:p-[60px] md:p-[30px] p-[10px]">
-        <div className="w-full h-fit flex justify-center lg:px-0 md:px-14 px-4">
-          <HeaderTitle
-            title={"Our Private Helicopter Fleet"}
-            renderDescription={true}
+    <div className="w-full h-fit relative">
+      <AliceCarousel
+        ref={heroCarouselRef}
+        duration={700}
+        startIndex={0}
+        fadeOutAnimation={true}
+        autoPlay={false}
+        disableDotsControls={true}
+        disableButtonsControls={true}
+        mouseDragEnabled={false}
+        autoPlayInterval={2000}
+        infinite={true}
+      >
+        <div>
+          <RenderHero
+            className={"h-[35vh] w-full"}
+            src={about1}
+            alt={"Spiffing Events Limited"}
+            title={"Memories"}
           />
         </div>
-        <div className="w-full h-fit py-12 max-w-screen-2xl mx-auto">
-          <div className="text-[18px] font-medium text-center text-rotorblue pb-1 border-b">
+      </AliceCarousel>
+      <div className="w-full h-fit min-h-screen py-10 lg:p-[60px] md:p-[30px] p-[10px]">
+        <div className="w-full h-fit flex justify-center lg:px-0 md:px-14 px-4">
+          <HeaderTitle title={"Photo Gallery"} className={"text-darkGreen"} />
+        </div>
+        {/* <div className="w-full h-fit pb-2 max-w-screen-xl mx-auto">
+          <div className="text-[18px] font-medium text-center  pb-1 border-b">
             <ul className="flex flex-wrap  md:space-x-2 space-x-1">
               {tabLinks.map((item, index) => (
                 <li
                   key={item.id}
-                  className={`inline-block md:p-4 px-0.5 md:border-b-4 border-b-2 md:text-[18px] text-[10px] rounded-t-lg hover:text-rotorblue hover:border-rotorbrown rounded cursor-pointer ${
+                  className={`inline-block md:p-4 px-0.5 md:border-b-4 border-b-2 md:text-[18px] text-[10px] rounded-t-lg hover:text-sniffGreen rounded cursor-pointer ${
                     selectedTab === item.title
-                      ? "text-rotorblue border-rotorbrown rounded"
-                      : "text-rotorblue border-rotorwhite"
+                      ? "text-sniffGreen rounded"
+                      : "text-darkGreen border-white"
                   }`}
                   onClick={() => setSelectedTab(item.title)}
                 >
@@ -162,7 +173,7 @@ export default function PhotoGallery() {
               ))}
             </ul>
           </div>
-        </div>
+        </div> */}
         <div className="w-full h-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-2 pb-[150px] max-w-screen-2xl mx-auto">
           {filteredImages.map((item, index) => (
             <div
