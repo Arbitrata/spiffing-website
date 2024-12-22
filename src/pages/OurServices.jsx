@@ -1,7 +1,25 @@
 import { useRef } from "react";
 import AliceCarousel from "react-alice-carousel";
 import { Button, RenderHero } from "../components";
-import { hero1, hero2, hero3 } from "../assets";
+import {
+  about4,
+  eventmanagement1,
+  eventmanagement2,
+  eventmanagement4,
+  eventmanagement5,
+  eventmanagement6,
+  hero1,
+  market1,
+  market2,
+  market3,
+  market4,
+  market5,
+  market6,
+  supply1,
+  supply3,
+  supply5,
+  supply7,
+} from "../assets";
 import { HeaderTitle } from "../components/headers";
 import { useNavigate } from "react-router-dom";
 
@@ -12,6 +30,24 @@ export default function OurServicesPage() {
   const handleNavigation = (path) => {
     navigate(path);
   };
+
+  const eventManagement = [
+    eventmanagement2,
+    eventmanagement5,
+    eventmanagement1,
+    eventmanagement6,
+    eventmanagement4,
+  ];
+
+  const eventSupplies = [supply1, supply3, supply5, about4, supply7];
+
+  const experientialMarketing = [
+    market6,
+    market3,
+    market2,
+    market4,
+    market5,
+  ];
 
   const ImageGrid = ({ data, side }) => {
     const leftSide = side && side === "left";
@@ -24,39 +60,39 @@ export default function OurServicesPage() {
             } h-[220px] row-span-1 bg-sniffBg`}
           >
             <img
-              src={hero3}
+              src={data[0]}
               alt="Spiffing Events Limited"
               className="h-full w-full object-cover object-center"
             />
           </div>
           <div
             className={`${
-              leftSide ? "col-span-2" : "col-span-1"
+              leftSide ? "lg:col-span-2 col-span-1" : "col-span-1"
             } h-[220px] row-span-1 bg-sniffBg`}
           >
             <img
-              src={hero1}
+              src={data[1]}
               alt="Spiffing Events Limited"
               className="h-full w-full object-cover object-center"
             />
           </div>
           <div className="lg:col-span-1 col-span-2 h-[220px] row-span-1 bg-sniffBg">
             <img
-              src={hero1}
+              src={data[2]}
               alt="Spiffing Events Limited"
               className="h-full w-full object-cover object-center"
             />
           </div>
           <div className="col-span-1 h-[220px] row-span-1 bg-sniffBg">
             <img
-              src={hero1}
+              src={data[3]}
               alt="Spiffing Events Limited"
               className="h-full w-full object-cover object-center"
             />
           </div>
           <div className="col-span-1 h-[220px] row-span-1 bg-sniffBg">
             <img
-              src={hero1}
+              src={data[4]}
               alt="Spiffing Events Limited"
               className="h-full w-full object-cover object-center"
             />
@@ -96,7 +132,7 @@ export default function OurServicesPage() {
         className="w-full h-fit overflow-hidden bg-sniffBg lg:px-[70px] md:px-[30px] px-[20px] pb-[60px] pt-[20px] "
       >
         <div className="w-full h-fit overflow-hidden max-w-screen-xl mx-auto grid lg:grid-cols-5 grid-cols-1 gap-x-[40px]">
-          <ImageGrid side={"left"} />
+          <ImageGrid side={"left"} data={eventManagement} />
           <div
             id="event-management"
             className="lg:col-span-2 lg:space-y-0 space-y-8 col-span-1 flex flex-col justify-around h-full py-8 relative"
@@ -108,9 +144,10 @@ export default function OurServicesPage() {
               <hr className="border-sniffGreen border-[2px] rounded-full w-[40%] mt-6" />
             </div>
             <p className="text-[16px] max-w-[460px] font-light text-textGray leading-[25px]">
-              Ready to make 2025 even more spectacular? Lets transform your
-              vision into reality. Explore our portfolio of successful events
-              and discover how Spiffing Events can elevate your next occasion.
+              From concept to celebration, we bring your vision to life with
+              precision and creativity. Discover how Spiffing Events crafts
+              unforgettable experiences, turning your ideas into spectacular
+              realities for any occasion.
             </p>
             <div className="w-full lg:flex grid grid-cols-2 flex-wrap gap-6 h-fit">
               <Button
@@ -118,7 +155,7 @@ export default function OurServicesPage() {
                 buttonStyle={
                   "bg-darkGreen text-[14px] text-white font-medium hover:bg-darkGreen/90"
                 }
-                buttonText={"Our portfolio"}
+                buttonText={"Our Work"}
                 iconPresent={true}
               />
               <Button
@@ -147,9 +184,10 @@ export default function OurServicesPage() {
               <hr className="border-sniffGreen border-[2px] rounded-full w-[40%] mt-6" />
             </div>
             <p className="text-[16px] max-w-[460px] font-light text-textGray leading-[25px]">
-              Ready to make 2025 even more spectacular? Lets transform your
-              vision into reality. Explore our portfolio of successful events
-              and discover how Spiffing Events can elevate your next occasion.
+              Elevate your event with premium supplies that blend quality and
+              style. From stunning décor to essential equipment, Spiffing Events
+              ensures every detail enhances your vision, creating a seamless and
+              memorable experience.
             </p>
             <div className="w-full lg:flex grid grid-cols-2 flex-wrap gap-6 h-fit">
               <Button
@@ -170,7 +208,7 @@ export default function OurServicesPage() {
               />
             </div>
           </div>
-          <ImageGrid side={"right"} />
+          <ImageGrid side={"right"} data={eventSupplies} />
         </div>
       </div>
 
@@ -179,7 +217,7 @@ export default function OurServicesPage() {
         className="w-full h-fit overflow-hidden bg-sniffBg lg:px-[70px] md:px-[30px] px-[20px] py-[60px]"
       >
         <div className="w-full h-fit overflow-hidden max-w-screen-xl mx-auto grid lg:grid-cols-5 grid-cols-1 gap-x-[40px]">
-          <ImageGrid side={"left"} />
+          <ImageGrid side={"left"} data={experientialMarketing} />
           <div className="lg:col-span-2 lg:space-y-0 space-y-8 col-span-1 flex flex-col justify-around h-full py-8 relative">
             <div className="w-full flex flex-col space-y-4">
               <h1 className="text-[33px] font-bold text-darkGreen max-w-[460px] leading-[130%]">
@@ -188,9 +226,10 @@ export default function OurServicesPage() {
               <hr className="border-sniffGreen border-[2px] rounded-full w-[40%] mt-6" />
             </div>
             <p className="text-[16px] max-w-[460px] font-light text-textGray leading-[25px]">
-              Ready to make 2025 even more spectacular? Lets transform your
-              vision into reality. Explore our portfolio of successful events
-              and discover how Spiffing Events can elevate your next occasion.
+              Engage your audience like never before with dynamic, immersive
+              experiences. Spiffing Events combines creativity and strategy to
+              bring your brand to life, leaving a lasting impression through
+              unforgettable moments.
             </p>
             <div className="w-full lg:flex grid grid-cols-2 flex-wrap gap-6 h-fit">
               <Button

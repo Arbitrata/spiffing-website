@@ -1,16 +1,28 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { Button, FeedCard, RenderHero } from "../components";
 import Marquee from "react-fast-marquee";
 import { ScrollToBehavior } from "../helper";
-import { about1, bg1, hero1, hero2, hero3 } from "../assets";
+import {
+  about1,
+  bg1,
+  hero1,
+  hero2,
+  hero3,
+  recent1,
+  recent2,
+  recent3,
+  recent4,
+  recent5,
+} from "../assets";
 import { HeroCard } from "../components/cards";
 import { HeaderTitle } from "../components/headers";
 import { useNavigate } from "react-router-dom";
 import { SlCalender } from "react-icons/sl";
 import { FaTools } from "react-icons/fa";
 import { TbTargetArrow } from "react-icons/tb";
+import recentEventsData from "../data/recentEvents.json";
 
 export const CTA = () => {
   const navigate = useNavigate();
@@ -70,6 +82,19 @@ export const CTA = () => {
 function LandingPage() {
   const heroCarouselRef = useRef();
   const navigate = useNavigate();
+  const [recentEvents, setRecentEvents] = useState([]);
+
+  const images = {
+    recent1,
+    recent2,
+    recent3,
+    recent4,
+    recent5,
+  };
+
+  useEffect(() => {
+    setRecentEvents(recentEventsData);
+  }, []);
 
   const logos = [
     "https://spiffing-v2.vercel.app/assets/img/elements/brand3.png",
@@ -210,7 +235,29 @@ function LandingPage() {
               disableButtonsControls={true}
               infinite={true}
             >
-              <img src={about1} alt="" className="w-full h-full object-cover" />
+              {recentEvents.map((recentEvent, index) => (
+                <div
+                  key={index}
+                  className="w-full lg:h-[400px] bg-sniffBg relative"
+                >
+                  <img
+                    src={images[recentEvent.image]}
+                    alt={`Spiffing events limited - ${recentEvent.title}`}
+                    className="w-full object-cover"
+                  />
+                  <div className="w-full h-fit absolute bg-darkGreen bg-opacity-50  text-center bottom-0 left-0 py-6 space-y-2 flex flex-col justify-center">
+                    <h1 className="md:text-[20px] text-[18px] text-white font-bold leading-[130%]">
+                      {recentEvent.title}
+                    </h1>
+                    <a
+                      href={recentEvent.link}
+                      className="text-[16px] text-sniffGreen font-bold underline leading-[25px]"
+                    >
+                      {`View Gallery`}
+                    </a>
+                  </div>
+                </div>
+              ))}
             </AliceCarousel>
           </div>
           <div className="col-span-1 lg:col-span-2 space-y-8 lg:mt-0 mt-6 flex flex-col justify-around py-8">
@@ -221,9 +268,10 @@ function LandingPage() {
               <hr className="border-sniffGreen border-[2px] rounded-full w-[40%] mt-6" />
             </div>
             <p className="text-[16px] max-w-[460px] font-light text-textGray leading-[25px]">
-              Ready to make 2025 even more spectacular? Lets transform your
-              vision into reality. Explore our portfolio of successful events
-              and discover how Spiffing Events can elevate your next occasion.
+              Celebrate the magic of unforgettable moments! Take a journey
+              through our curated collection of remarkable events, where
+              creativity meets excellence. Let Spiffing Events inspire your
+              vision for an extraordinary 2025.
             </p>
             <div className="w-full lg:flex grid grid-cols-2 flex-wrap gap-6 h-fit">
               <Button
@@ -231,7 +279,7 @@ function LandingPage() {
                 buttonStyle={
                   "bg-darkGreen text-[14px] text-white font-medium hover:bg-darkGreen/90"
                 }
-                buttonText={"Our portfolio"}
+                buttonText={"Our Work"}
                 iconPresent={true}
               />
               <Button
