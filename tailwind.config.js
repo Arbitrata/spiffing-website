@@ -1,24 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,jsx,ts,tsx}" 
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {},
     colors: {
-      darkgray: "#102C57",
-      beige: "#DAC0A3",
-      beigemedium: "#EADBC8",
-      beigefade: "#F8F0E5",
-      darkblue: "#101828",
-      textblue: "#475467",
+      sniffGreen: "#28d369",
+      darkGreen: "#052814",
+      sniffBg: "#f5fafc",
+      black: "#000000",
       white: "#FFFFFF",
-      textgray: "#475467",
-      beigeligter: "#FCF7EC",
-      border: "#F2F4F7",
+      textGray: "#686781",
+    },
+    fontFamily: {
+      lexend: ["Lexend", "sans-serif"],
     },
   },
   plugins: [],
-}
-
+};
